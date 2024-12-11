@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { envs } from 'src/config/envs';
 import { CreatePaymentSessionDto } from 'src/dto/create-payment-session.dto';
 import Stripe from 'stripe';
@@ -32,5 +33,14 @@ export class PaymentsRestService {
         })
 
         return session;
+    }
+
+    async stripeWebhook(request: Request, response: Response) {
+      const signature = request.headers['stripe-signature'];
+
+      console.log('Signature', signature);
+      
+
+      return response.status(200).json({ signature })
     }
 }
