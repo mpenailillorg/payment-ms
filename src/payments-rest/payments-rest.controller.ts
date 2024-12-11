@@ -7,7 +7,7 @@ export class PaymentsRestController {
 
   @Post('create-payment-session')
   createPaymentSession() {
-    return 'createPaymentSession'
+    return this.paymentsRestService.createPaymentSession()
   }
 
   @Get('success')
